@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import print from './print'
 
 function component() {
   const element = document.createElement('div');
@@ -10,13 +11,18 @@ function component() {
   element.appendChild(br);
   element.appendChild(button);
 
-  // Note that because a network request is involved, some indication
-  // of loading would need to be shown in a production-level site/app.
-  button.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
-    const print = module.default;
 
-    print();
-  });
+  // 动态加载
+  // button.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
+  //   const print = module.default;
+
+  //   print();
+  // });
+
+  // 静态加载
+  button.onclick = e => {
+    print()
+  };
 
   return element;
 }
